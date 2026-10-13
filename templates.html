@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub de Templates e Design | Gentrop & Salesforce</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* Identidade Co-branded Gentrop + Salesforce */
+            --sf-navy: #032D60;
+            /* Salesforce Deep Navy */
+            --sf-navy-dark: #001E3D;
+            /* Background profundo executivo */
+            --sf-blue: #0176D3;
+            /* Salesforce Standard Blue */
+            --sf-cloud: #EBF5FF;
+            /* Tint de azul suave */
+            --gentrop-yellow: #FFD11D;
+            /* Amarelo vibrante oficial Gentrop */
+            --neutral-bg: #F4F6F9;
+            /* Salesforce Lightning background */
+            --neutral-card: #FFFFFF;
+            --neutral-border: #D8DDE6;
+            --text-main: #181818;
+            --text-muted: #54698D;
+            /* Salesforce Muted Text */
+            --text-white: #FFFFFF;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--neutral-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-top: 76px;
+        }
+
+        /* Header Fixo */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 76px;
+            background-color: var(--sf-navy-dark);
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 36px;
+            z-index: 1000;
+            border-bottom: 3px solid var(--gentrop-yellow);
+            box-shadow: 0 4px 18px rgba(0, 30, 61, 0.25);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-white);
+        }
+
+        .header-brand .badge-tag {
+            background: var(--gentrop-yellow);
+            color: var(--sf-navy-dark);
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .header-nav a {
+            color: #D8DDE6;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .header-nav a:hover {
+            color: var(--gentrop-yellow);
+        }
+
+        .btn-header {
+            background: var(--gentrop-yellow);
+            color: var(--sf-navy-dark) !important;
+            padding: 9px 18px;
+            border-radius: var(--radius-sm);
+            font-weight: 700 !important;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-header:hover {
+            background: #ffe066;
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--sf-navy-dark) 0%, var(--sf-navy) 60%, #084887 100%);
+            color: var(--text-white);
+            padding: 64px 24px 72px 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 209, 29, 0.15);
+            border: 1px solid var(--gentrop-yellow);
+            color: var(--gentrop-yellow);
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span {
+            color: var(--gentrop-yellow);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #D8E6F5;
+            max-width: 820px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 48px 24px 80px 24px;
+        }
+
+        .section-header {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--sf-navy);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 4px solid var(--gentrop-yellow);
+            padding-bottom: 8px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-top: 8px;
+        }
+
+        /* Cards Passo a Passo */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-bottom: 56px;
+        }
+
+        .step-card {
+            background: var(--neutral-card);
+            padding: 26px;
+            border-radius: var(--radius-md);
+            border-top: 5px solid var(--sf-blue);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-num {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--sf-navy);
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--neutral-border);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .step-num .badge {
+            background: var(--sf-cloud);
+            color: var(--sf-blue);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .step-card p {
+            font-size: 0.92rem;
+            color: #444;
+            line-height: 1.55;
+        }
+
+        .step-card strong {
+            color: var(--sf-navy);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #001226;
+            color: #E2ECF8;
+            padding: 18px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            white-space: pre-wrap;
+            max-height: 260px;
+            overflow-y: auto;
+            margin: 14px 0;
+            font-size: 0.84rem;
+            border: 1px solid #18467A;
+            line-height: 1.5;
+        }
+
+        /* Botões */
+        .btn {
+            background: var(--gentrop-yellow);
+            color: var(--sf-navy-dark);
+            border: none;
+            padding: 12px 20px;
+            font-weight: 700;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #ffe066;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(255, 209, 29, 0.35);
+        }
+
+        .btn-full {
+            width: 100%;
+            margin-top: 14px;
+        }
+
+        /* Catálogo de Templates */
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+            gap: 32px;
+        }
+
+        .template-card {
+            background: var(--neutral-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--neutral-border);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .template-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(3, 45, 96, 0.12);
+            border-color: var(--sf-blue);
+        }
+
+        .template-preview {
+            width: 100%;
+            height: 210px;
+            border-bottom: 3px solid var(--gentrop-yellow);
+            display: block;
+            overflow: hidden;
+            background: var(--sf-navy-dark);
+        }
+
+        .template-preview svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .template-body {
+            padding: 22px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .template-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: var(--sf-cloud);
+            color: var(--sf-blue);
+            margin-bottom: 8px;
+            width: fit-content;
+        }
+
+        .template-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--sf-navy);
+        }
+
+        .template-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        /* Toast Notification Fix */
+        #toast {
+            visibility: hidden;
+            min-width: 320px;
+            background-color: var(--sf-navy-dark);
+            color: var(--gentrop-yellow);
+            border: 2px solid var(--gentrop-yellow);
+            text-align: center;
+            border-radius: var(--radius-sm);
+            padding: 16px 24px;
+            position: fixed;
+            z-index: 99999;
+            right: 32px;
+            bottom: 32px;
+            font-weight: 700;
+            box-shadow: 0 8px 30px rgba(0, 30, 61, 0.5);
+            font-size: 1rem;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Fixo -->
+    <header>
+        <a href="#" class="header-brand">
+            <i class="fa-solid fa-cloud" style="color: var(--gentrop-yellow);"></i>
+            Gentrop <span style="color: var(--gentrop-yellow);">+ Salesforce</span>
+            <span class="badge-tag">GOVERNANÇA VISUAL</span>
+        </a>
+        <nav class="header-nav">
+            <a href="#como-usar">Como Usar</a>
+            <a href="#catalogo-templates">Catálogo de Layouts</a>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <div class="hero">
+        <div class="hero-kicker">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Ajuste Direto via Gemini no Google Slides
+        </div>
+        <h1>Hub de Layouts <span>Gentrop & Salesforce</span></h1>
+        <p>Aplique a nova identidade visual (Azul Marinho Salesforce + Amarelo Gentrop) mantendo 100% dos seus textos e
+            conteúdos intactos slide por slide.</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Como Funciona -->
+        <div class="section-header" id="como-usar">
+            <h2 class="section-title"><i class="fa-solid fa-route"></i> Como Aplicar nos Slides Atuais</h2>
+            <p class="section-subtitle">Siga os passos abaixo utilizando apenas o Gemini no menu lateral do Google
+                Slides.</p>
+        </div>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">Passo 1 <span class="badge">Google Slides</span></div>
+                <p>Selecione o slide que deseja reformatar na sua apresentação do Google Slides e abra a **barra lateral
+                    do Gemini**.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">Passo 2 <span class="badge">Escolher Layout</span></div>
+                <p>Nesta página, navegue pelo catálogo abaixo e escolha o estilo de layout que melhor encaixa no seu
+                    slide atual.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">Passo 3 <span class="badge">Copiar Prompt</span></div>
+                <p>Clique no botão <strong>"Copiar Prompt para este Slide"</strong> no card correspondente do catálogo.
+                </p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">Passo 4 <span class="badge">Executar</span></div>
+                <p>Cole o prompt no Gemini lateral do Google Slides e envie. Ele reformatará o slide atual aplicando o
+                    novo design sem apagar seus textos.</p>
+            </div>
+        </div>
+
+        <!-- Catálogo de Templates -->
+        <div class="section-header" id="catalogo-templates">
+            <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Catálogo de Prompts por Estilo de Layout
+            </h2>
+            <p class="section-subtitle">Prompts calibrados para reformatar o slide selecionado com a paleta Marinho
+                (#032D60), Azul (#0176D3) e Amarelo (#FFD11D).</p>
+        </div>
+
+        <div class="templates-grid">
+
+            <!-- Template 1: Capa Co-branded -->
+            <div class="template-card">
+                <div class="template-preview">
+                    <svg viewBox="0 0 600 337">
+                        <rect width="600" height="337" fill="#032D60" />
+                        <path d="M400,0 L600,0 L600,337 L460,337 Z" fill="#0176D3" opacity="0.35" />
+                        <rect x="420" y="48" width="145" height="240" rx="20" fill="#001E3D" stroke="#0176D3"
+                            stroke-width="2" />
+                        <circle cx="492" cy="130" r="36" fill="#FFD11D" />
+                        <text x="492" y="138" fill="#032D60" font-size="24" font-weight="bold"
+                            text-anchor="middle">☁️</text>
+                        <text x="492" y="195" fill="#FFFFFF" font-size="13" font-weight="bold"
+                            text-anchor="middle">GENTROP</text>
+                        <text x="492" y="215" fill="#FFD11D" font-size="11" font-weight="bold" text-anchor="middle">+
+                            SALESFORCE</text>
+                        <rect x="40" y="58" width="110" height="22" rx="4" fill="#FFD11D" />
+                        <text x="95" y="73" fill="#032D60" font-size="11" font-weight="bold"
+                            text-anchor="middle">DREAMFORCE 2026</text>
+                        <text x="40" y="130" fill="#FFFFFF" font-size="34" font-weight="bold">[Título do Slide]</text>
+                        <text x="40" y="165" fill="#FFD11D" font-size="18" font-weight="600">[Subtítulo da
+                            Apresentação]</text>
+                    </svg>
+                </div>
+                <div class="template-body">
+                    <span class="template-badge">Capa / Abertura</span>
+                    <div class="template-title">1. Capa Executiva Co-branded</div>
+                    <div class="template-desc">Aplica o fundo Azul Marinho (#032D60), tags em Amarelo Gentrop e card
+                        institucional da parceria no slide de capa.</div>
+                    <div class="code-block" id="prompt-1">Reformate o SLIDE ATUAL para o layout de Capa Executiva
+                        Co-branded (Gentrop + Salesforce), MANTENDO TODO O TEXTO EXISTENTE.
+                        Diretrizes Visuais:
+                        - Fundo: Azul Marinho Profundo (#032D60).
+                        - Reorganize o Título principal em fonte bold (36pt, cor branca #FFFFFF).
+                        - Reorganize o Subtítulo em tom Amarelo Gentrop (#FFD11D, 18pt).
+                        - Adicione uma tag de topo em fundo Amarelo Gentrop (#FFD11D) com texto escuro.
+                        - No lado direito, crie um container decorativo em Azul Escuro (#001E3D) com borda Azul
+                        (#0176D3) simulando o espaço do mascote/parceria.
+                        - Mantenha exatamente as mesmas frases e informações que já estão gravadas no slide atual.</div>
+                    <button class="btn btn-full" onclick="copyText('prompt-1', 'Prompt do Template 1 copiado!')"><i
+                            class="fa-solid fa-copy"></i> Copiar Prompt para este Slide</button>
+                </div>
+            </div>
+
+            <!-- Template 2: Divisor de Seção -->
+            <div class="template-card">
+                <div class="template-preview">
+                    <svg viewBox="0 0 600 337">
+                        <rect width="600" height="337" fill="#001E3D" />
+                        <rect x="40" y="50" width="40" height="40" rx="8" fill="#FFD11D" />
+                        <text x="60" y="76" fill="#032D60" font-size="18" font-weight="bold"
+                            text-anchor="middle">02</text>
+                        <text x="96" y="75" fill="#0176D3" font-size="14" font-weight="bold">SUMÁRIO / TRILHA</text>
+                        <text x="40" y="130" fill="#FFFFFF" font-size="32" font-weight="bold">[Título da Seção]</text>
+                        <rect x="40" y="160" width="240" height="120" rx="12" fill="#032D60" />
+                        <text x="56" y="185" fill="#FFD11D" font-size="12" font-weight="bold">ATÉ AQUI</text>
+                        <rect x="300" y="160" width="260" height="120" rx="12" fill="#0176D3" />
+                        <text x="316" y="185" fill="#FFFFFF" font-size="12" font-weight="bold">AGORA</text>
+                    </svg>
+                </div>
+                <div class="template-body">
+                    <span class="template-badge">Divisor de Seção</span>
+                    <div class="template-title">2. Divisor com Contexto ("Até Aqui / Agora")</div>
+                    <div class="template-desc">Ideal para os slides de transição de assunto (Slides 11, 18, 22, 32)
+                        organizando a ponte conceitual.</div>
+                    <div class="code-block" id="prompt-2">Reformate o SLIDE ATUAL para o layout Divisor de Seção com
+                        Transição, MANTENDO TODO O TEXTO EXISTENTE.
+                        Diretrizes Visuais:
+                        - Fundo: Azul Noturno (#001E3D).
+                        - Destaque o Título da Seção em letras brancas (#FFFFFF) e tamanho amplo.
+                        - Crie dois blocos lado a lado na parte inferior:
+                        - Bloco 1 ("ATÉ AQUI"): Container em Marinho (#032D60) acomodando o texto de resumo do que foi
+                        visto.
+                        - Bloco 2 ("AGORA"): Container em Azul Salesforce (#0176D3) acomodando o texto do novo tema.
+                        - Adicione um indicador numérico em fundo Amarelo Gentrop (#FFD11D) no topo.
+                        - Preserve 100% das palavras e textos presentes no slide atual.</div>
+                    <button class="btn btn-full" onclick="copyText('prompt-2', 'Prompt do Template 2 copiado!')"><i
+                            class="fa-solid fa-copy"></i> Copiar Prompt para este Slide</button>
+                </div>
+            </div>
+
+            <!-- Template 3: Time / Especialistas -->
+            <div class="template-card">
+                <div class="template-preview">
+                    <svg viewBox="0 0 600 337">
+                        <rect width="600" height="337" fill="#FFFFFF" />
+                        <text x="40" y="45" fill="#0176D3" font-size="11" font-weight="bold">EQUIPE</text>
+                        <text x="40" y="70" fill="#032D60" font-size="20" font-weight="bold">Membros e Formação</text>
+                        <rect x="40" y="90" width="160" height="200" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                        <circle cx="80" cy="130" r="20" fill="#032D60" />
+                        <rect x="220" y="90" width="160" height="200" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                        <circle cx="260" cy="130" r="20" fill="#032D60" />
+                        <rect x="400" y="90" width="160" height="200" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                        <circle cx="440" cy="130" r="20" fill="#032D60" />
+                    </svg>
+                </div>
+                <div class="template-body">
+                    <span class="template-badge">Pessoas / Apresentadores</span>
+                    <div class="template-title">3. Equipe & Integrantes</div>
+                    <div class="template-desc">Para o Slide 2 do material, organizando os integrantes do time em cards
+                        limpos e simétricos.</div>
+                    <div class="code-block" id="prompt-3">Reformate o SLIDE ATUAL para o layout de Cards de Equipe,
+                        MANTENDO TODO O TEXTO E NOMES EXISTENTES.
+                        Diretrizes Visuais:
+                        - Fundo: Branco Puro (#FFFFFF).
+                        - Título do slide em Azul Marinho (#032D60) e cabeçalho em Azul Salesforce (#0176D3).
+                        - Distribua as informações dos integrantes em cards verticais com fundo cinza suave (#F4F6F9) e
+                        bordas suaves (#D8DDE6).
+                        - Em cada card, coloque um círculo no topo em Azul Marinho (#032D60) contendo as iniciais da
+                        pessoa em amarelo.
+                        - Destaque o Nome em negrito, a Formação em azul e os Temas em blocos organizados.
+                        - Não altere ou resuma nenhum nome, cargo ou formação presente no slide.</div>
+                    <button class="btn btn-full" onclick="copyText('prompt-3', 'Prompt do Template 3 copiado!')"><i
+                            class="fa-solid fa-copy"></i> Copiar Prompt para este Slide</button>
+                </div>
+            </div>
+
+            <!-- Template 4: Sumário e Agenda -->
+            <div class="template-card">
+                <div class="template-preview">
+                    <svg viewBox="0 0 600 337">
+                        <rect width="600" height="337" fill="#FFFFFF" />
+                        <text x="40" y="45" fill="#0176D3" font-size="11" font-weight="bold">AGENDA</text>
+                        <text x="40" y="70" fill="#032D60" font-size="20" font-weight="bold">Sumário do Material</text>
+                        <rect x="40" y="90" width="245" height="42" rx="8" fill="#F4F6F9" />
+                        <rect x="40" y="90" width="36" height="42" rx="8" fill="#FFD11D" />
+                        <rect x="315" y="90" width="245" height="42" rx="8" fill="#F4F6F9" />
+                        <rect x="315" y="90" width="36" height="42" rx="8" fill="#FFD11D" />
+                    </svg>
+                </div>
+                <div class="template-body">
+                    <span class="template-badge">Índice / Lista</span>
+                    <div class="template-title">4. Sumário / Lista Numerada</div>
+                    <div class="template-desc">Para o Slide 3 e tópicos de agenda, organizando os itens em duas colunas
+                        paralelas com pílulas numeradas.</div>
+                    <div class="code-block" id="prompt-4">Reformate o SLIDE ATUAL para o layout de Sumário Numerado em
+                        Colunas, MANTENDO TODO O TEXTO EXISTENTE.
+                        Diretrizes Visuais:
+                        - Fundo: Branco Puro (#FFFFFF).
+                        - Título do slide em Azul Marinho (#032D60).
+                        - Organize os tópicos listados em duas colunas de barras paralelas com fundo cinza suave
+                        (#F4F6F9).
+                        - À esquerda de cada item, coloque um bloco quadrado em Amarelo Gentrop (#FFD11D) com o número
+                        correspondente (01, 02, 03...) em texto escuro (#032D60).
+                        - Mantenha rigorosamente todos os nomes de seções e descrições originais sem alterações.</div>
+                    <button class="btn btn-full" onclick="copyText('prompt-4', 'Prompt do Template 4 copiado!')"><i
+                            class="fa-solid fa-copy"></i> Copiar Prompt para este Slide</button>
+                </div>
+            </div>
+
+            <!-- Template 5: Antes vs Depois / 2 Colunas -->
+            <div class="template-card">
+                <div class="template-preview">
+                    <svg viewBox="0 0 600 337">
+                        <rect width="600" height="337" fill="#FFFFFF" />
+                        <text x="40" y="42" fill="#0176D3" font-size="11" font-weight="bold">COMPARATIVO</text>
+                        <text x="40" y="66" fill="#032D60" font-size="20" font-weight="bold">Evolução do
+                            Paradigma</text>
+                        <rect x="40" y="85" width="245" height="215" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                        <rect x="315" y="85" width="245" height="215" rx="12" fill="#EBF5FF" stroke="#0176D3" />
+                        <rect x="315" y="85" width="245" height="34" rx="12" fill="#0176D3" />
+                    </svg>
+                </div>
+                <div class="template-body">
+                    <span class="template-badge">Comparativo 2 Colunas</span>
+                    <div class="template-title">5. Comparativo (Antes vs. Depois)</div>
+                    <div class="template-desc">Para Slides 6, 13, 14, 16, 21 e 48 (System of Record vs System of
+                        Agency).</div>
+                    <div class="code-block" id="prompt-5">Reformate o SLIDE ATUAL para o layout Comparativo de 2 Colunas
+                        (Antes vs Depois), MANTENDO TODO O TEXTO EXISTENTE.
+                        Diretrizes Visuais:
+                        - Fundo: Branco Puro (#FFFFFF).
+                        - Coluna Esquerda ("Como Era / Modelo Tradicional"): Container em fundo neutro (#F4F6F9) e borda
+                        cinza (#D8DDE6).
+                        - Coluna Direita ("Como Fica / Novo Padrão"): Container de destaque em Azul Claro (#EBF5FF) com
+                        borda em Azul Salesforce (#0176D3) e cabeçalho azul.
+                        - Adicione uma pílula/tag em Amarelo Gentrop (#FFD11D) para destacar datas ou disponibilidades
+                        presentes no texto.
+                        - Não altere nenhuma palavra dos textos e tópicos presentes no slide.</div>
+                    <button class="btn btn-full" onclick="copyText('prompt-5', 'Prompt do Template 5 copiado!')"><i
+                            class="fa-solid fa-copy"></i> Copiar Prompt para este Slide</button>
+                </div>
+            </div>
+
+            <!-- Template 6: Grid de 3 ou 4 Cards -->
+            <div class="template-card">
+                <div class="template-preview">
+                    <svg viewBox="0 0 600 337">
+                        <rect width="600" height="337" fill="#FFFFFF" />
+                        <text x="40" y="42" fill="#0176D3" font-size="11" font-weight="bold">RECURSOS</text>
+                        <text x="40" y="66" fill="#032D60" font-size="20" font-weight="bold">Pilares da Solução</text>
+                        <rect x="40" y="85" width="160" height="215" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                        <circle cx="70" cy="115" r="16" fill="#FFD11D" />
+                        <rect x="220" y="85" width="160" height="215" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                        <circle cx="250" cy="115" r="16" fill="#FFD11D" />
+                        <rect x="400" y="85" width="160" height="215" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                        <circle cx="430" cy="115" r="16" fill="#FFD11D" />
+                    </svg>
+                </div>
+                <div class="template-body">
+                    <span class="template-badge">Pilares / Grid</span>
+                    <div class="template-title">6. Grid de Cards Paralelos (3 a 4 Colunas)</div>
+                    <div class="template-desc">Para Slides 4, 15, 24, 28, 36 e 44 (detalhamento de capacidades e
+                        especificações).</div>
+                    <div class="code-block" id="prompt-6">Reformate o SLIDE ATUAL para o layout de Grid de Cards
+                        Paralelos, MANTENDO TODO O TEXTO EXISTENTE.
+                        Diretrizes Visuais:
+                        - Fundo: Branco Puro (#FFFFFF).
+                        - Título alinhado à esquerda em Azul Marinho (#032D60).
+                        - Reorganize o conteúdo em cards verticais simétricos paralelos (3 ou 4 colunas conforme a
+                        quantidade de itens no slide).
+                        - Cada card deve ter fundo cinza suave (#F4F6F9), borda leve (#D8DDE6) e no topo um pequeno
+                        círculo em Amarelo Gentrop (#FFD11D) com o número do item em marinho.
+                        - Mantenha integralmente o texto atual de cada bloco.</div>
+                    <button class="btn btn-full" onclick="copyText('prompt-6', 'Prompt do Template 6 copiado!')"><i
+                            class="fa-solid fa-copy"></i> Copiar Prompt para este Slide</button>
+                </div>
+            </div>
+
+            <!-- Template 7: KPI Destaque e Modelo Comercial -->
+            <div class="template-card">
+                <div class="template-preview">
+                    <svg viewBox="0 0 600 337">
+                        <rect width="600" height="337" fill="#032D60" />
+                        <text x="40" y="45" fill="#FFD11D" font-size="11" font-weight="bold">MÉTRICAS /
+                            MONETIZAÇÃO</text>
+                        <text x="40" y="70" fill="#FFFFFF" font-size="20" font-weight="bold">Indicadores de
+                            Destaque</text>
+                        <rect x="40" y="90" width="220" height="205" rx="16" fill="#FFD11D" />
+                        <text x="150" y="165" fill="#032D60" font-size="44" font-weight="bold" text-anchor="middle">BIG
+                            KPI</text>
+                        <rect x="280" y="90" width="280" height="95" rx="12" fill="#001E3D" stroke="#0176D3" />
+                        <rect x="280" y="198" width="280" height="97" rx="12" fill="#001E3D" stroke="#0176D3" />
+                    </svg>
+                </div>
+                <div class="template-body">
+                    <span class="template-badge">Big Numbers / Comercial</span>
+                    <div class="template-title">7. Destaque de KPI / Preço</div>
+                    <div class="template-desc">Para Slides 14, 17, 25 e dados de impacto do evento (US$ 2 por resolução,
+                        43 mil pessoas).</div>
+                    <div class="code-block" id="prompt-7">Reformate o SLIDE ATUAL para o layout de Destaque de KPI /
+                        Modelo Comercial, MANTENDO TODO O TEXTO EXISTENTE.
+                        Diretrizes Visuais:
+                        - Fundo: Azul Marinho Profundo (#032D60).
+                        - Título do slide em texto branco (#FFFFFF) e cabeçalho em Amarelo Gentrop (#FFD11D).
+                        - Lado Esquerdo: Um container em Amarelo Gentrop (#FFD11D) com o valor numérico principal em
+                        tamanho gigante (44pt) e cor Azul Marinho (#032D60).
+                        - Lado Direito: Caixas empilhadas em Azul Escuro (#001E3D) com bordas azuis (#0176D3) contendo o
+                        texto explicativo, regras e ROI.
+                        - Preserve exatamente o conteúdo e valores originais presentes no slide.</div>
+                    <button class="btn btn-full" onclick="copyText('prompt-7', 'Prompt do Template 7 copiado!')"><i
+                            class="fa-solid fa-copy"></i> Copiar Prompt para este Slide</button>
+                </div>
+            </div>
+
+            <!-- Template 8: Linha do Tempo / Roadmap -->
+            <div class="template-card">
+                <div class="template-preview">
+                    <svg viewBox="0 0 600 337">
+                        <rect width="600" height="337" fill="#FFFFFF" />
+                        <text x="40" y="42" fill="#0176D3" font-size="11" font-weight="bold">ROADMAP</text>
+                        <text x="40" y="66" fill="#032D60" font-size="20" font-weight="bold">Status e Lançamentos</text>
+                        <line x1="60" y1="135" x2="540" y2="135" stroke="#0176D3" stroke-width="2"
+                            stroke-dasharray="4" />
+                        <rect x="40" y="95" width="160" height="195" rx="12" fill="#F4F6F9" stroke="#0176D3" />
+                        <rect x="220" y="95" width="160" height="195" rx="12" fill="#F4F6F9" stroke="#FFD11D" />
+                        <rect x="400" y="95" width="160" height="195" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                    </svg>
+                </div>
+                <div class="template-body">
+                    <span class="template-badge">Cronograma / Releases</span>
+                    <div class="template-title">8. Roadmap / Status de Releases</div>
+                    <div class="template-desc">Para Slides 10, 26, 37 e 45 (Disponível vs Em Teste vs Futuro).</div>
+                    <div class="code-block" id="prompt-8">Reformate o SLIDE ATUAL para o layout de Roadmap e Status de
+                        Lançamentos, MANTENDO TODO O TEXTO EXISTENTE.
+                        Diretrizes Visuais:
+                        - Fundo: Branco Puro (#FFFFFF).
+                        - Título em Azul Marinho (#032D60) e subtítulo em azul (#0176D3).
+                        - Reorganize o conteúdo nas 3 fases sequenciais (ex: Disponível, Em Teste, Futuro).
+                        - Coloque uma tag colorida no topo de cada coluna (Azul Salesforce para Disponível, Amarelo
+                        Gentrop para Em Teste, Cinza para Futuro).
+                        - Coloque uma linha conectora sutil ao fundo das colunas.
+                        - Mantenha integralmente todos os tópicos e textos gravados no slide.</div>
+                    <button class="btn btn-full" onclick="copyText('prompt-8', 'Prompt do Template 8 copiado!')"><i
+                            class="fa-solid fa-copy"></i> Copiar Prompt para este Slide</button>
+                </div>
+            </div>
+
+            <!-- Template 9: Quotes dos Gentroopers -->
+            <div class="template-card">
+                <div class="template-preview">
+                    <svg viewBox="0 0 600 337">
+                        <rect width="600" height="337" fill="#FFFFFF" />
+                        <text x="40" y="42" fill="#0176D3" font-size="11" font-weight="bold">FEEDBACKS</text>
+                        <text x="40" y="66" fill="#032D60" font-size="20" font-weight="bold">Gentroopers no
+                            Evento</text>
+                        <rect x="40" y="85" width="160" height="215" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                        <circle cx="70" cy="115" r="18" fill="#032D60" />
+                        <rect x="220" y="85" width="160" height="215" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                        <circle cx="250" cy="115" r="18" fill="#032D60" />
+                        <rect x="400" y="85" width="160" height="215" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                        <circle cx="430" cy="115" r="18" fill="#032D60" />
+                    </svg>
+                </div>
+                <div class="template-body">
+                    <span class="template-badge">Citações / Fechamento</span>
+                    <div class="template-title">9. Depoimentos / Citações (Quotes)</div>
+                    <div class="template-desc">Atende ao Slide 51 (percepções e falas dos colaboradores sobre o evento).
+                    </div>
+                    <div class="code-block" id="prompt-9">Reformate o SLIDE ATUAL para o layout de Depoimentos e
+                        Citações (Quotes), MANTENDO TODO O TEXTO EXISTENTE.
+                        Diretrizes Visuais:
+                        - Fundo: Branco Puro (#FFFFFF).
+                        - Reorganize o conteúdo em cards para cada depoimento com fundo cinza claro (#F4F6F9).
+                        - Em cada card, coloque um avatar circular em Azul Marinho (#032D60) com as iniciais da pessoa
+                        em amarelo, o nome em negrito e o cargo em azul (#0176D3).
+                        - Destaque as aspas em tom Amarelo Gentrop (#FFD11D) e formate o depoimento em itálico.
+                        - Mantenha rigorosamente 100% dos depoimentos e cargos intactos sem alterar o texto.</div>
+                    <button class="btn btn-full" onclick="copyText('prompt-9', 'Prompt do Template 9 copiado!')"><i
+                            class="fa-solid fa-copy"></i> Copiar Prompt para este Slide</button>
+                </div>
+            </div>
+
+            <!-- Template 10: Referências e Links -->
+            <div class="template-card">
+                <div class="template-preview">
+                    <svg viewBox="0 0 600 337">
+                        <rect width="600" height="337" fill="#FFFFFF" />
+                        <text x="40" y="42" fill="#0176D3" font-size="11" font-weight="bold">REFERÊNCIAS</text>
+                        <text x="40" y="66" fill="#032D60" font-size="20" font-weight="bold">Documentação Técnica</text>
+                        <rect x="40" y="85" width="245" height="215" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                        <rect x="315" y="85" width="245" height="215" rx="12" fill="#F4F6F9" stroke="#D8DDE6" />
+                    </svg>
+                </div>
+                <div class="template-body">
+                    <span class="template-badge">Links / Fontes</span>
+                    <div class="template-title">10. Referências Técnicas & Links</div>
+                    <div class="template-desc">Atende aos Slides 52 e 53 (repositório organizado de links e fontes
+                        oficiais).</div>
+                    <div class="code-block" id="prompt-10">Reformate o SLIDE ATUAL para o layout de Referências Técnicas
+                        e Links, MANTENDO TODOS OS LINKS E TEXTOS EXISTENTES.
+                        Diretrizes Visuais:
+                        - Fundo: Branco Puro (#FFFFFF).
+                        - Título em Azul Marinho (#032D60) e cabeçalho em azul (#0176D3).
+                        - Reorganize a lista de links em duas colunas de containers com fundo cinza suave (#F4F6F9) e
+                        bordas suaves (#D8DDE6).
+                        - Use marcadores redondos em Amarelo Gentrop (#FFD11D) antes de cada item de referência.
+                        - Mantenha intactos todos os nomes de documentos, URLs e links presentes no slide.</div>
+                    <button class="btn btn-full" onclick="copyText('prompt-10', 'Prompt do Template 10 copiado!')"><i
+                            class="fa-solid fa-copy"></i> Copiar Prompt para este Slide</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Toast Notification Fix -->
+    <div id="toast">Prompt copiado com sucesso!</div>
+
+    <script>
+        function copyText(elementId, message) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            const textToCopy = element.innerText || element.textContent;
+
+            // Método robusto para garantir a cópia em qualquer navegador
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    showToast(message);
+                }).catch(() => {
+                    fallbackCopy(textToCopy, message);
+                });
+            } else {
+                fallbackCopy(textToCopy, message);
+            }
+        }
+
+        function fallbackCopy(text, message) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            textArea.style.top = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast(message);
+            } catch (err) {
+                alert("Não foi possível copiar automaticamente. Selecione e copie manualmente.");
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.innerText = message;
+            toast.classList.add("show");
+            setTimeout(function () {
+                toast.classList.remove("show");
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
